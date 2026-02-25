@@ -20,10 +20,7 @@ body{
     overflow:hidden;
 }
 
-#message{
-    display:none;
-    animation: fadeIn 2s ease-in-out;
-}
+#message{ display:none; }
 
 img{
     width:230px;
@@ -35,29 +32,8 @@ img{
 }
 
 h1{
-    font-size:42px;
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow{
-    from{ text-shadow:0 0 10px white; }
-    to{ text-shadow:0 0 25px #fff,0 0 40px #ff4da6; }
-}
-
-@keyframes fadeIn{
-    from{opacity:0; transform:scale(0.8);}
-    to{opacity:1; transform:scale(1);}
-}
-
-.heart{
-    position:absolute;
-    font-size:20px;
-    animation: float 6s linear infinite;
-}
-
-@keyframes float{
-    from{transform:translateY(100vh);}
-    to{transform:translateY(-10vh);}
+    font-size:40px;
+    text-shadow:0 0 20px white;
 }
 
 button{
@@ -71,56 +47,67 @@ button{
     margin-top:15px;
 }
 
-#proposal{
-    display:none;
-    margin-top:20px;
-    font-size:22px;
-    animation: fadeIn 2s ease-in-out;
+.heart{
+    position:absolute;
+    font-size:20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
 }
 </style>
 </head>
 
-<body onclick="startExperience()">
+<body>
 
-<h2 id="clickText">Click Anywhere Swati ❤️</h2>
+<h2 id="clickText">Tap Anywhere Swati ❤️</h2>
 
 <div id="message">
-    <img src="swati.jpg" alt="Swati">
+    <img src="swati.jpg">
     <h1>Swati 💖</h1>
     <p>Tum bahut cute ho 🥰</p>
     <p>Thank you meri life me aane ke liye</p>
     <p>Aur mujhe itna pyaar dene ke liye 💕</p>
     <h2>I Love You Forever ❤️</h2>
 
-    <button onclick="showProposal(event)">Special Surprise 💍</button>
+    <button onclick="playMusic()">🎵 Play Our Song</button>
+    <button onclick="showProposal()">💍 Special Surprise</button>
 
-    <div id="proposal">
+    <div id="proposal" style="display:none; margin-top:15px;">
         💍 Will You Be Mine Forever? 💖
     </div>
 </div>
 
-<audio id="bgMusic" src="song.mp3"></audio>
+<audio id="bgMusic" preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 
-function startExperience(){
+document.body.addEventListener("click", function firstClick(){
     document.getElementById("clickText").style.display="none";
     document.getElementById("message").style.display="block";
+    document.body.removeEventListener("click", firstClick);
+});
 
+function playMusic(){
     var audio = document.getElementById("bgMusic");
-    audio.volume = 1;
-    audio.play().catch(() => {
-        console.log("User interaction required");
+    audio.load();
+    audio.play().then(()=>{
+        console.log("Playing ❤️");
+    }).catch(()=>{
+        alert("Agar nahi chal raha to dobara button dabao ❤️");
     });
 }
 
-function showProposal(e){
-    e.stopPropagation();
+function showProposal(){
     document.getElementById("proposal").style.display="block";
 }
 
 // Floating hearts
-for(let i=0;i<35;i++){
+for(let i=0;i<30;i++){
     let heart=document.createElement("div");
     heart.innerHTML="❤️";
     heart.className="heart";
