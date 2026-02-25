@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For My Swati ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .message {
+            display: none;
+            font-size: 28px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .heart {
+            font-size: 60px;
+            animation: beat 1s infinite;
+        }
+
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body onclick="showMessage()">
+
+    <div id="clickText">
+        <h1>Click Anywhere ❤️</h1>
+        <p>Swati ke liye ek special surprise hai...</p>
+    </div>
+
+    <div class="message" id="loveMessage">
+        <div class="heart">❤️</div>
+        <h1>Swati 💖</h1>
+        <p>Tum bahut cute ho 🥰</p>
+        <p>Thanks meri life me aane ke liye</p>
+        <p>Aur mujhe itna pyaar dene ke liye 💕</p>
+        <h2>I Love You Forever ❤️</h2>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("clickText").style.display = "none";
+            document.getElementById("loveMessage").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
