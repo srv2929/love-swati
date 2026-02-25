@@ -1,70 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>For My Swati ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            color: white;
-            cursor: pointer;
-            overflow: hidden;
-        }
+<meta charset="UTF-8">
+<title>For My Swati ❤️</title>
 
-        .message {
-            display: none;
-            font-size: 28px;
-            animation: fadeIn 2s ease-in-out;
-        }
+<style>
+body {
+    margin:0;
+    padding:0;
+    height:100vh;
+    background: linear-gradient(to right,#ff758c,#ff7eb3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    font-family: Arial, sans-serif;
+    color:white;
+    text-align:center;
+    overflow:hidden;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
+#message {
+    display:none;
+    animation: fadeIn 2s ease-in-out;
+}
 
-        .heart {
-            font-size: 60px;
-            animation: beat 1s infinite;
-        }
+img {
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid white;
+    margin-bottom:20px;
+}
 
-        @keyframes beat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-    </style>
+@keyframes fadeIn {
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+
+.heart {
+    position:absolute;
+    color:white;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-10vh);}
+}
+
+button {
+    padding:10px 20px;
+    font-size:18px;
+    border:none;
+    border-radius:20px;
+    background:white;
+    color:#ff4e8a;
+    cursor:pointer;
+}
+</style>
 </head>
-<body onclick="showMessage()">
 
-    <div id="clickText">
-        <h1>Click Anywhere ❤️</h1>
-        <p>Swati ke liye ek special surprise hai...</p>
-    </div>
+<body onclick="showLove()">
 
-    <div class="message" id="loveMessage">
-        <div class="heart">❤️</div>
-        <h1>Swati 💖</h1>
-        <p>Tum bahut cute ho 🥰</p>
-        <p>Thanks meri life me aane ke liye</p>
-        <p>Aur mujhe itna pyaar dene ke liye 💕</p>
-        <h2>I Love You Forever ❤️</h2>
-    </div>
+<h2 id="clickText">Click Anywhere Swati ❤️</h2>
 
-    <script>
-        function showMessage() {
-            document.getElementById("clickText").style.display = "none";
-            document.getElementById("loveMessage").style.display = "block";
-        }
-    </script>
+<div id="message">
+    <img src="swati.jpg" alt="Swati">
+    <h1>Swati 💖</h1>
+    <p>Tum bahut cute ho 🥰</p>
+    <p>Thank you meri life me aane ke liye</p>
+    <p>Aur mujhe itna pyaar dene ke liye 💕</p>
+    <h2>I Love You Forever ❤️</h2>
+    <button onclick="playMusic()">Play Our Song 🎵</button>
+</div>
+
+<audio id="bgMusic" src="song.mp3"></audio>
+
+<script>
+function showLove(){
+    document.getElementById("clickText").style.display="none";
+    document.getElementById("message").style.display="block";
+}
+
+function playMusic(){
+    document.getElementById("bgMusic").play();
+}
+
+// floating hearts
+for(let i=0;i<20;i++){
+    let heart=document.createElement("div");
+    heart.innerHTML="❤️";
+    heart.className="heart";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(heart);
+}
+</script>
 
 </body>
-
 </html>
