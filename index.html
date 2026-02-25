@@ -26,8 +26,8 @@ body{
 }
 
 img{
-    width:220px;
-    height:220px;
+    width:230px;
+    height:230px;
     border-radius:50%;
     object-fit:cover;
     border:6px solid white;
@@ -35,7 +35,7 @@ img{
 }
 
 h1{
-    font-size:40px;
+    font-size:42px;
     animation: glow 2s infinite alternate;
 }
 
@@ -80,7 +80,7 @@ button{
 </style>
 </head>
 
-<body onclick="showLove()">
+<body onclick="startExperience()">
 
 <h2 id="clickText">Click Anywhere Swati ❤️</h2>
 
@@ -92,7 +92,6 @@ button{
     <p>Aur mujhe itna pyaar dene ke liye 💕</p>
     <h2>I Love You Forever ❤️</h2>
 
-    <button onclick="playMusic(event)">Play Our Song 🎵</button>
     <button onclick="showProposal(event)">Special Surprise 💍</button>
 
     <div id="proposal">
@@ -103,14 +102,16 @@ button{
 <audio id="bgMusic" src="song.mp3"></audio>
 
 <script>
-function showLove(){
+
+function startExperience(){
     document.getElementById("clickText").style.display="none";
     document.getElementById("message").style.display="block";
-}
 
-function playMusic(e){
-    e.stopPropagation();
-    document.getElementById("bgMusic").play();
+    var audio = document.getElementById("bgMusic");
+    audio.volume = 1;
+    audio.play().catch(() => {
+        console.log("User interaction required");
+    });
 }
 
 function showProposal(e){
@@ -118,8 +119,8 @@ function showProposal(e){
     document.getElementById("proposal").style.display="block";
 }
 
-// floating hearts
-for(let i=0;i<30;i++){
+// Floating hearts
+for(let i=0;i<35;i++){
     let heart=document.createElement("div");
     heart.innerHTML="❤️";
     heart.className="heart";
@@ -127,6 +128,7 @@ for(let i=0;i<30;i++){
     heart.style.animationDuration=(Math.random()*3+3)+"s";
     document.body.appendChild(heart);
 }
+
 </script>
 
 </body>
